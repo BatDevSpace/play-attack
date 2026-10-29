@@ -1,0 +1,163 @@
+/* style.css */
+@import url('https://googleapis.com');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0f1c10;
+    color: #0f1c10;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px; /* Texto ligeiramente maior para leitura fácil */
+    line-height: 1.8; /* Mais espaço entre linhas para textos longos */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Ecrã de Game Boy XL (Alargado para grandes textos) */
+.gameboy-screen {
+    background-color: #8bac0f;
+    width: 100%;
+    max-width: 900px; /* Aumentado de 600px para 900px */
+    min-height: 90vh;
+    border: 15px solid #306230;
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Efeito Retro de Linhas (Scanlines) */
+.gameboy-screen::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%);
+    z-index: 10;
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+/* Menu de Navegação */
+nav {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 4px double #306230;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+nav a {
+    color: #0f1c10;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+nav a:hover, nav a.active {
+    background-color: #306230;
+    color: #8bac0f;
+    padding: 4px 6px;
+}
+
+/* Barra de Pesquisa Retro */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    flex: 1;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    background-color: #9bbc0f;
+    border: 3px solid #306230;
+    padding: 8px;
+    color: #0f1c10;
+    outline: none;
+}
+
+.search-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    background-color: #306230;
+    color: #8bac0f;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.search-btn:active {
+    background-color: #0f1c10;
+}
+
+/* Design de Artigo Longo */
+h1 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.article {
+    background-color: #9bbc0f;
+    border: 3px solid #306230;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.article-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #0f1c10;
+}
+
+.article-meta {
+    font-size: 9px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #306230;
+    padding-bottom: 8px;
+}
+
+/* Estilo para os parágrafos longos */
+.article p {
+    margin-bottom: 15px;
+    text-align: justify; /* Alinha o texto bonitinho nas laterais */
+}
+
+/* Sistema de Interação */
+.article-footer {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #306230;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-like {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: #306230;
+    color: #8bac0f;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.btn-like:active {
+    background-color: #0f1c10;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Boy Blog - Batalhas da Morte</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="gameboy-screen">
+        <!-- Menu Principal (A aba BATALHAS fica ativa aqui) -->
+           <nav>
+    <a href="index.html">[INICIO]</a>
+    <a href="batalhas.html">[BATALHAS]</a>
+    <a href="curiosidades.html">[CURIOSIDADES]</a>
+    <a href="sobre.html">[SOBRE]</a>
+</nav>
+
+        <h1>BATALHA DA MORTE</h1>
+        
+        <!-- Barra de Pesquisa para as lutas -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="PESQUISAR COMBATE..." onkeyup="filtrarTextos()">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <!-- Zona dos Combates -->
+        <div id="listaArtigos">
+            
+            <!-- COMBATE 1 -->
+            <div class="article">
+                <div class="article-meta">
+                    <span>Introdução às batalhas da morte</span>
+                    <span>AUTOR: Miguel H. Caramaschi</span>
+                </div>
+                <!-- Histórico e Análise da Luta (Texto Longo) -->
+                <p>Pegamos dois ou mais personagens da cultura pop e os botamos para enfrentar, num combate mano a mano.</p>
+
+                <div class="article-footer">
+                    <div class="like-box">
+                        <button class="btn-like" onclick="darLike('likes-bat1')">👍 VOTAR NESTA LUTA</button>
+                        <span id="likes-bat1">56 VOTOS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMBATE 2 (Pronto para o teu irmão mudar os textos) -->
+            <div class="article">
+                <div class="article-meta">
+                    <span>QUADRO: BATALHA DA MORTE</span>
+                    <span>AUTOR: Miguel H. Caramaschi</span>
+                </div>
+                
+                <h2 class="article-title" style="text-align: center; color: #0f1c10; font-size: 18px; margin-bottom: 20px;">
+                    Em breve...
+                </h2>
+
+                <div style="border: 2px dashed #306230; padding: 15px; margin-bottom: 20px; font-size: 11px;">
+                    <p><strong>[LUTADOR 1] NÃO IDENTIFICADO:</strong></p>
+                    <p style="margin-top: 10px;"><strong>[LUTADOR 2] NÃO IDENTIFICADO:</strong></p>
+                </div>
+
+                <div style="background-color: #306230; color: #8bac0f; padding: 10px; text-align: center; font-weight: bold; margin-top: 20px;">
+                    🏆 VENCEDOR: EM BREVE...
+                </div>
+
+                <div class="article-footer">
+                    <div class="like-box">
+                        <button class="btn-like" onclick="darLike('likes-bat2')">👍 VOTAR NESTA LUTA</button>
+                        <span id="likes-bat2">0 VOTOS</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Novo JavaScript para as Batalhas -->
+    <script>
+        window.onload = function() {
+            carregarVotos('likes-bat1',0);
+            carregarVotos('likes-bat2', 0);
+        };
+
+        function carregarVotos(idDoPost, valorInicial) {
+            let votosGravados = localStorage.getItem(idDoPost);
+            if (votosGravados !== null) {
+                document.getElementById(idDoPost).innerText = votosGravados + " VOTOS";
+            } else {
+                document.getElementById(idDoPost).innerText = valorInicial + " VOTOS";
+            }
+        }
+
+        function darLike(idDoPost) {
+            let elemento = document.getElementById(idDoPost);
+            let numeroAtual = parseInt(elemento.innerText);
+            let novoNumero = numeroAtual + 1;
+            
+            elemento.innerText = novoNumero + " VOTOS";
+            localStorage.setItem(idDoPost, novoNumero);
+        }
+
+        function filtrarTextos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let artigos = document.getElementsByClassName('article');
+
+            for (let i = 0; i < artigos.length; i++) {
+                let titulo = artigos[i].getElementsByClassName('article-title').innerText.toLowerCase();
+                let conteudo = artigos[i].innerText.toLowerCase();
+                
+                if (titulo.includes(input) || conteudo.includes(input)) {
+                    artigos[i].style.display = "";
+                } else {
+                    artigos[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

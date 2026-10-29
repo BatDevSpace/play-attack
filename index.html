@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>PLAY ATACK!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="gameboy-screen">
+        <!-- Menu Principal -->
+        <nav>
+    <a href="index.html">[INICIO]</a>
+    <a href="batalhas.html">[BATALHAS]</a>
+    <a href="curiosidades.html">[CURIOSIDADES]</a>
+    <a href="sobre.html">[SOBRE]</a>
+</nav>
+
+
+        <h1>Play Attack!</h1>
+        
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="PESQUISAR TEXTO..." onkeyup="filtrarTextos()">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <!-- Zona dos Artigos Longos -->
+        <div id="listaArtigos">
+            
+            <!-- Artigo 1 -->
+            <div class="article">
+                <div class="article-meta">
+                    <span>DATA: 29/10/2026</span>
+                    <span>AUTOR: Miguel H. Caramaschi</span>
+                </div>
+                <h2 class="article-title">BEM-VINDO</h2>
+                <p>Bem-vindo ao Play Attack, somos um site de curiosidades e fatos sobre nossos personagens favoritos! Somos um site de fã para fã.</p>
+                
+                <div class="article-footer">
+                    <div class="like-box">
+                        <button class="btn-like" onclick="darLike('likes-art1')">👍 LIKE</button>
+                        <span id="likes-art1">0 LIKES</span>
+                    </div>
+                </div>
+            </div>
+    <!-- Novo JavaScript com gravação de dados Real -->
+    <script>
+        // Quando a página carrega, vai buscar os likes gravados
+        window.onload = function() {
+            carregarLikes('likes-art1', 0); // 0 é o valor inicial de exemplo
+            carregarLikes('likes-art2', 0); // 0 é o valor inicial de exemplo
+        };
+
+        function carregarLikes(idDoPost, valorInicial) {
+            // Vê se já existe algum clique gravado no "cartucho" (localStorage)
+            let likesGravados = localStorage.getItem(idDoPost);
+            
+            if (likesGravados !== null) {
+                document.getElementById(idDoPost).innerText = likesGravados + " LIKES";
+            } else {
+                document.getElementById(idDoPost).innerText = valorInicial + " LIKES";
+            }
+        }
+
+        function darLike(idDoPost) {
+            let elemento = document.getElementById(idDoPost);
+            let numeroAtual = parseInt(elemento.innerText);
+            let novoNumero = numeroAtual + 1;
+            
+            // Atualiza o texto na tela
+            elemento.innerText = novoNumero + " LIKES";
+            
+            // Grava o novo valor no "cartucho" para nunca mais perder!
+            localStorage.setItem(idDoPost, novoNumero);
+        }
+
+        function filtrarTextos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let artigos = document.getElementsByClassName('article');
+
+            for (let i = 0; i < artigos.length; i++) {
+                let titulo = artigos[i].getElementsByClassName('article-title').innerText.toLowerCase();
+                let conteudo = artigos[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (titulo.includes(input) || conteudo.includes(input)) {
+                    artigos[i].style.display = "";
+                } else {
+                    artigos[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

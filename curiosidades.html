@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Play Attack - Curiosidades</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="gameboy-screen">
+        <!-- Menu Principal com a nova aba ativa -->
+        <nav>
+            <a href="index.html">[INICIO]</a>
+            <a href="batalhas.html">[BATALHAS]</a>
+            <a href="curiosidades.html" class="active">[CURIOSIDADES]</a>
+            <a href="sobre.html">[SOBRE]</a>
+        </nav>
+
+        <h1>CURIOSIDADES</h1>
+        
+        <!-- Barra de Pesquisa para as Curiosidades -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="PESQUISAR CURIOSIDADE..." onkeyup="filtrarTextos()">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <!-- Zona das Curiosidades -->
+        <div id="listaArtigos">
+            
+            <!-- ARTIGO DO MIGUEL: MINECRAFT -->
+            <div class="article">
+                <div class="article-meta">
+                    <span>CATEGORIA: HISTÓRIA</span>
+                    <span>AUTOR: MIGUEL</span>
+                </div>
+                
+                <h2 class="article-title">COMO SURGIU O MINECRAFT?</h2>
+                
+                <p>Fala galera, tudo certinho? Sou Miguel e é o seguinte, Minecraft é um dos jogos mais icônicos da cultura pop, é incontável o número de coisas que podemos fazer neste mundo de blocos da Mojang e da Microsoft. Mas, como ele surgiu? É o que vou mostrar agora! Veremos a trajetória inteira do mundo de Steve! Então pega uma pipoca e vamos nessa!</p>
+                
+                <p>Primeiramente, precisamos falar de Markus Persson, ou, como também é melhor conhecido, Notch. Ele é um programador sueco e o criador do jogo Minecraft. Notch nasceu no final dos anos 70 e ele sempre foi fascinado pelo mundo dos videogames, e criou seu primeiro jogo aos seis anos no Commodore do pai, e era simples até porque foi criado por uma criança.</p>
+                
+                <p>Quando Notch cresceu, ele já quis saber do que queria trabalhar, e entrou na King, empresa sueca responsável por Candy Crush. Mas, o Notch nunca foi muito fã de trabalhar em grandes empresas, e criou Minecraft ao sair da King como um projeto pessoal inspirado por jogos como Dungeon Keeper, Dwarf Fortress e Infiniminer.</p>
+                
+                <p>O jogo originalmente se chamava Cave Game, mas depois virou Minecraft: A Ordem da Pedra e finalmente terminou como apenas Minecraft. A primeira versão foi terminada em apenas seis dias, (apesar da versão final completa ter demorado dois anos para ser concluída). O Creeper veio de um bug quando o Notch estava querendo criar porcos.</p>
+                
+                <p>Tudo isso em 2009, mas, o Notch percebeu que, mesmo gostando de criar jogos indies, ele não era bom em criar um jogo inteiro sozinho, e fundou a Mojang para o ajudar posteriormente.</p>
+                
+                <p>O Minecraft completo foi lançado em 2011 e desde então, virou o maior videogame dos últimos anos.</p>
+                
+                <p>Em 2014, a Microsoft comprou a Mojang, e consequentemente o Minecraft, e desde então, Notch saiu do projeto e seu amigo, Jens Bergensten, assumiu os cargos principais de Notch.</p>
+                
+                <p>E foi assim que surgiu o jogo quadrado! Gostou? Espero que sim! Sou Miguel, te vejo na próxima, até lá, até mais e fui: se cuidem!</p>
+                
+                <div class="article-footer">
+                    <div class="like-box">
+                        <button class="btn-like" onclick="darLike('likes-cur1')">👍 COOOL!</button>
+                        <span id="likes-cur1">0 LIKES</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script de Likes Reais e Pesquisa Inteligente -->
+    <script>
+        window.onload = function() {
+            // Começa com 0 likes reais salvos no computador
+            let likesGravados = localStorage.getItem('likes-cur1');
+            if (likesGravados !== null) {
+                document.getElementById('likes-cur1').innerText = likesGravados + " LIKES";
+            } else {
+                document.getElementById('likes-cur1').innerText = "0 LIKES";
+            }
+        };
+
+        function darLike(idDoPost) {
+            let elemento = document.getElementById(idDoPost);
+            let numeroAtual = parseInt(elemento.innerText);
+            let novoNumero = numeroAtual + 1;
+            
+            elemento.innerText = novoNumero + " LIKES";
+            localStorage.setItem(idDoPost, novoNumero);
+        }
+
+        function filtrarTextos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let artigos = document.getElementsByClassName('article');
+
+            for (let i = 0; i < artigos.length; i++) {
+                let titulo = artigos[i].getElementsByClassName('article-title')[0].innerText.toLowerCase();
+                let conteudo = artigos[i].innerText.toLowerCase();
+                
+                if (titulo.includes(input) || conteudo.includes(input)) {
+                    artigos[i].style.display = "";
+                } else {
+                    artigos[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
